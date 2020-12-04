@@ -26,6 +26,7 @@
 	<li><a href='index.jsp?inc=./jquery/sortable.jsp'>SORTABLE</a>
 	<li><a href='index.jsp?inc=./jquery/accordion.jsp'>Accordion</a>
 	<li><a href='index.jsp?inc=./jquery/autocomplete.jsp'>Autocomplete</a>
+	<li><a href='index.jsp?inc=./jquery/menu_ui.jsp'>MENU</a>
 	
 </ol>
 </body>
