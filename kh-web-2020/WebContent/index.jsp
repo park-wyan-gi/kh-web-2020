@@ -10,6 +10,7 @@
 	        crossorigin="anonymous"></script>
 </head>
 <body>
+
 <%
  // inc
  String inc = "intro.jsp";
@@ -119,12 +120,15 @@
   });
   $('#index>#contents>.content').css({
 	  'width' : '650px',
-	  'float' : 'left'
+	  'display' : 'inline-block',
+	  'vertical-align' : 'top'
   });
   
   $('#index>#contents>.aside').css({
 	  'width' : '150px',
-	  'float' : 'left'
+	  'display' : 'inline-block',
+	  'margin-left' : '-6px',
+	  'vertical-align' : 'top'
   });
   
   $('#index>#contents>.aside>#sub_menu').css({

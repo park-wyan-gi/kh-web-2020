@@ -21,6 +21,11 @@
 	<li><a href='index.jsp?inc=./jquery/one.jsp'>ONE</a>
 	<li><a href='index.jsp?inc=./jquery/effect.jsp'>EFFECT</a>
 	<li><a href='index.jsp?inc=./jquery/tabs.jsp'>TABS</a>
+	<li><a href='index.jsp?inc=./jquery/drag.jsp'>DRAG</a>
+	<li><a href='index.jsp?inc=./jquery/drop.jsp'>DROP</a>
+	<li><a href='index.jsp?inc=./jquery/sortable.jsp'>SORTABLE</a>
+	<li><a href='index.jsp?inc=./jquery/accordion.jsp'>Accordion</a>
+	<li><a href='index.jsp?inc=./jquery/autocomplete.jsp'>Autocomplete</a>
 	
 </ol>
 </body>
