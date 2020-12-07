@@ -9,11 +9,21 @@
 #items>div{
 	display : inline-block;
 	width: 200px;
-	height:200px;
+	min-height:150px;
 	border:1px solid #ccc;
-	padding:5px;
-	box-shadow:2px 2px 3px #999;
-	border-radius:9px;
+	padding:15px;
+	box-sizing : border-box;
+	box-shadow:2px 2px 4px #aaa;
+	border-radius:12px;
+	margin-right:7px;
+}
+
+.emp>div:first-child{
+	color:#00f;
+	border-bottom:1px dotted #555;
+}
+.emp>div:nth-child(2){
+	font-weight:bolder;
 }
 </style>
 </head>
@@ -21,7 +31,7 @@
 <div id='emp_search_form'>
 	<form name='frm' method='post' id='frm'>
 		<label>검색어를 입력하세요 </label>
-		<input type='text' name='findStr' />
+		<input type='text' size='30' name='findStr' placeholder='성명, 이메일, 연락처로 검색'/>
 		<input type='button' value='검색' id='btnFind'/>
 	</form>
 	<hr/>
