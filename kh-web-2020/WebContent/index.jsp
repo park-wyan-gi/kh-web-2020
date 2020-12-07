@@ -58,8 +58,8 @@
 </div>
 <script>
   //모든 기본태그의 마진,패딩을 0로 설정
-  $('*').css('margin', '0px');
-  $('*').css('padding', '0px');
+  //$('*').css('margin', '0px');
+  //$('*').css('padding', '0px');
   // 패딩의 증가의 영향을 최소화 하기위한 조치
   $('*').css('box-sizing', 'border-box');
   $('a').css('text-decoration', 'none');
