@@ -27,6 +27,9 @@
 	<li><a href='index.jsp?inc=./jquery/accordion.jsp'>Accordion</a>
 	<li><a href='index.jsp?inc=./jquery/autocomplete.jsp'>Autocomplete</a>
 	<li><a href='index.jsp?inc=./jquery/menu_ui.jsp'>MENU</a>
+	<li><a href='index.jsp?inc=./jquery/func_ajax.jsp'>ajax 함수 호출</a>
+	<li><a href='index.jsp?inc=./jquery/func_ajax_json.jsp'>ajax 함수 호출(JSON)</a>
+	<li><a href='index.jsp?inc=./jquery/func_load.jsp'>load 함수 호출</a>
 	
 </ol>
 </body>
