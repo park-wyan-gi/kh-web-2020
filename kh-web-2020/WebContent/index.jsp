@@ -10,8 +10,8 @@
 	        crossorigin="anonymous"></script>
 </head>
 <body>
-
 <%
+	request.setCharacterEncoding("utf-8");
  // inc
  String inc = "intro.jsp";
  if(request.getParameter("inc") != null){
