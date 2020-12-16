@@ -30,29 +30,53 @@
 		if(request.getParameter("findStr") != null){
 			findStr = request.getParameter("findStr");	
 		}
-			
 		List<GuestBookVo> list = dao.select(findStr);
 		request.setAttribute("list", list);
 	%>
+
+	<c:if test='${not empty sessionScope.mid }'>
+		<%-- 방명록 입력 화면 --%>
+		<%@include file="./insert.jsp" %>
+	</c:if>
+	<c:if test='${ empty sessionScope.mid }'>
+		<font color='blue'>로그인 하시면 방명록을 작성할 수 있습니다.</font>
+	</c:if>
+	
+	
+	
+	<hr/>	
 	<%-- 방명록 list --%>
 	<div id='list'>
 		<c:forEach var='vo' items='${list }'>
 			<div id='item'>
-				<label>작성자</label>
-				<output class='mid'>${vo.mid }</output>
-				<label>작성일자</label>
-				<output class='mdate'>${vo.mdate }</output>
-				<br/>
-				<textarea rows="5" cols="80" disabled>${vo.doc }</textarea>
-				<br/>
-				<div class='btns'>
-					<input type='button' value='수정' id='btnUpdate' />
-					<input type='button' value='삭제' id='btnDelete' />
-				</div>
+				<form name='frm_temp' method='post'>
+					<label>작성자</label>
+					
+					<input type='text' name='mid' readOnly class='mid' value='${vo.mid }' />
+					
+					<label>작성일자</label>
+					<output class='mdate'>${vo.mdate }</output>
+					<br/>
+					<textarea rows="5" cols="80" disabled name='doc'>${vo.doc }</textarea>
+					<br/>
+					
+					<c:if test="${vo.mid == sessionScope.mid }">
+						<div class='btns'>
+							<input type='button' value='수정' id='btnUpdate' name='btnUpdate' onclick='funcUpdate(this.form)'/>
+							<input type='button' value='삭제' id='btnDelete' onclick='funcDelete(this.form)'/>
+						</div>
+					</c:if>
+					<input type='text' name='serial' value='${vo.serial }'/>
+					<input type='hidden' name='pwd' />
+				</form>
+					
 			</div>	
 		</c:forEach>
 	</div>	
+	
+	
 </div>
+<script>guestbook()</script>
 </body>
 </html>
 
