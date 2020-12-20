@@ -4,12 +4,16 @@
  * 작성일 : 2020.12
  */
 
+var getID = function(id){
+	return document.getElementById(id);
+}
+
 var guestbook = function(){
 
 	// -------------------------------------------
 	// 방명록 입력 버튼이 클릭된 경우 
 	// -------------------------------------------
-	var btnInsert = document.getElementById('btnInsert');
+	var btnInsert = getID('btnInsert'); 
 	
 	//방법1
 	if(btnInsert != null){

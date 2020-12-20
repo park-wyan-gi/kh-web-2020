@@ -12,6 +12,10 @@
 <body>
 <%
 	request.setCharacterEncoding("utf-8");
+
+	application.setAttribute("msg", "※ 다들 코로나 피해서 건강하고 행복한 연말 보냅시다.");
+
+
  // inc
  String inc = "intro.jsp";
  if(request.getParameter("inc") != null){
