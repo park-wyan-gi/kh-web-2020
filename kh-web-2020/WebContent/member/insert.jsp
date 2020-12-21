@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원관리(insert)</title>
 <link rel='stylesheet' type='text/css' href='./css/member.css'>
+<script src='./js/member.js'></script>
 </head>
 <body>
 <div id='member'>
@@ -46,9 +49,13 @@
 			<input type='button' value='저장' id='btnSave' />
 			<input type='button' value='목록으로' id='btnSelect' />
 			
+			<input type='text' name='findStr' value='${param.findStr }' />
+			<input type='text' name='nowPage' value='${param.nowPage }' />
+			
 		</div>
 	</form>
 
 </div>
+<script>member()</script>
 </body>
 </html>

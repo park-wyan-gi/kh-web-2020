@@ -15,7 +15,7 @@ public class GuestBookDao {
 	ResultSet rs;
 	
 	public GuestBookDao() {
-		conn = new Application("jobtc", "jobtc").getConn();
+		conn = new Application().getConn();
 	}
 	
 	public List<GuestBookVo> select(String findStr){

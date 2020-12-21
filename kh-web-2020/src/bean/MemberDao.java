@@ -10,7 +10,7 @@ public class MemberDao {
 	ResultSet rs; // select문의 실행결과
 	
 	public MemberDao() {
-		conn = new Application("jobtc", "jobtc").getConn();
+		conn = new Application().getConn();
 	}
 	
 	public boolean login(String mid, String pwd) {

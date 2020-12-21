@@ -5,30 +5,32 @@
 <head>
 <meta charset="UTF-8">
 <title>회원관리(insert)</title>
+<link rel='stylesheet' type='text/css' href='./css/member.css'>
 </head>
 <body>
 <div id='member'>
 	<h2>회원관리</h2>
-	<form name='frm_member' method='post'>
+	<form name='frm_member' method='post' class='view'>
 		<label>아이디</label>
-		<input type='text' name='mid' /><br/>
+		<input type='text' name='mid' disabled size='10'/><br/>
 		
 		<label>성명</label>
-		<input type='text' name='name' /><br/>
+		<input type='text' name='name' disabled size='12'/><br/>
 		
 		<label>이메일</label>
-		<input type='email' name='email' size='50' /><br/>
+		<input type='email' name='email' disabled size='35' /><br/>
 		
 		<label>연락처</label>
-		<input type='text' name='phone' size='30' /><br/>
+		<input type='text' name='phone' disabled size='15' /><br/>
 		
 		<label>우편번호</label>
-		<input type='text' name='zipcode' size='6' /><br/>
+		<input type='text' name='zipcode' disabled size='6' /><br/>
 		
 		<label>주소</label>
-		<input type='text' name='address' size='80' /> <br/>
+		<input type='text' name='address' disabled size='60' /> <br/>
 		
-		<img src='http://placehold.it/150x200' />
+		<label></label>
+		<img src='http://placehold.it/200x140' />
 		<hr/>
 		
 		<div class='btns'>
