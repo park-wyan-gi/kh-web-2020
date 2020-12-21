@@ -11,6 +11,74 @@ var member = function(){
 	var btnInsert = getID('btnInsert');
 	var btnFind   = getID('btnFind');
 	var btnSelect = getID('btnSelect');
+	var btnSave   = getID('btnSave');
+	var btnFindZip = getID('btnFindZip');
+	var btnPhoto  = getID('btnPhoto');
+	var btnModify = getID('btnModify');
+	var btnUpdate = getID('btnUpdate');
+	
+	if(btnUpdate != null){
+		btnUpdate.onclick = function(){
+			var frm = document.frm_member;
+			//frm.enctype = 'multipart/form-data';
+			frm.action = url + 'result.jsp';
+			frm.submit();
+		}
+	}
+	
+	if(btnModify != null){
+		btnModify.onclick = function(){
+			var frm = document.frm_member;
+			frm.action = url + 'update.jsp';
+			frm.submit();
+		}
+	}
+	
+	
+	
+	// 이미지 파일 미리보기
+	if(btnPhoto != null){
+		btnPhoto.onchange = function(ev){
+			var tag = ev.srcElement; // 이벤트 발생한 태그
+			var url = tag.files[0]; // 선택된 파일명
+			var reader = new FileReader();
+			reader.readAsDataURL(url);
+			reader.onload = function(e){
+				var img = new Image();
+				img.src = e.target.result;
+				var photo = getID('photo');
+				photo.src = img.src;
+			}
+		}
+	}
+	
+	
+	
+	
+	// 다음 우편번호 검색 API를 사용한 주소 찾기
+	if(btnFindZip != null){
+		btnFindZip.onclick = function(){
+			var frm = document.frm_member;
+			new daum.Postcode({
+				oncomplete : function(data){
+					frm.zipcode.value = data.zonecode;
+					frm.address.value = data.address;
+				}
+			}).open();
+		}
+	}
+	
+	
+	
+	if(btnSave != null){
+		btnSave.onclick = function(){
+			var frm = document.frm_member;
+			//frm.enctype = 'multipart/form-data';
+			frm.action = url + 'result.jsp';
+			frm.submit();
+		}
+	}
+	
 	
 	if(btnSelect != null){
 		btnSelect.onclick = function(){

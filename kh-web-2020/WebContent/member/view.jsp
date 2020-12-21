@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>회원관리(insert)</title>
 <link rel='stylesheet' type='text/css' href='./css/member.css'>
+<script src='./js/member.js'></script>
 </head>
 <body>
 <div id='member'>
@@ -37,10 +38,13 @@
 			<input type='button' value='수정' id='btnModify' />
 			<input type='button' value='삭제' id='btnDelete' />
 			<input type='button' value='목록으로' id='btnSelect' />
-			
 		</div>
+		
+		<input type='text' name='findStr' value='${param.findStr }'/>
+		<input type='text' name='nowPage' value='${param.nowPage }'/>
 	</form>
 
 </div>
+<script>member()</script>
 </body>
 </html>

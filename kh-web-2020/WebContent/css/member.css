@@ -9,6 +9,17 @@
 	border-radius: 10px;
 }
 
+#member .result_msg{
+	margin:60px auto;
+	width:400px;
+	border:2px solid #f55;
+	border-radius: 20px;
+	padding:20px;
+	box-sizing : border-box;
+	text-align: center;
+	box-shadow: 3px 3px 7px #999;
+}
+
 
 #member{
 	width:100%;
