@@ -17,7 +17,7 @@
 		<div>
 			<input type='text' name='findStr' class='findStr' value='${param.findStr }'>
 			<input type='button' value='검색' id='btnFind'/>
-			<input type='text' name='nowPage' value='${param.nowPage }'/>
+			<input type='text' name='nowPage' value='${(empty param.nowPage)? 1 : param.nowPage }'/>
 			<input type='text' name='mid' />
 		</div>
 	</form>

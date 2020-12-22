@@ -37,6 +37,7 @@ public class MemberDao {
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
+			disConn();
 			return b;
 		}
 	}
@@ -100,11 +101,7 @@ public class MemberDao {
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			disConn();
 			return list;
 		}
 	}
@@ -140,11 +137,7 @@ public class MemberDao {
 			}
 			
 		}finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			disConn();
 			return msg;
 		}
 	}
@@ -155,6 +148,7 @@ public class MemberDao {
 		}catch(Exception ex) {
 			msg = ex.getMessage();
 		}finally {
+			disConn();
 			return msg;
 		}
 	}
@@ -162,10 +156,26 @@ public class MemberDao {
 	public String delete(MemberVo vo){
 		String msg = "회원 정보가 정상적으로 삭제되었습니다.";
 		try {
+			String sql = "delete from members where mid=? and pwd=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, vo.getMid());
+			ps.setString(2,vo.getPwd());
+			
+			int rowCnt = ps.executeUpdate();
+			if(rowCnt<1) {
+				throw new Exception("회원 정보 삭제중 오류 발생");
+			}
+			
+			//첨부 파일 삭제
+			File file = new File(FileUpload.saveDir + vo.getDelFile());
+			if(file.exists()) {
+				file.delete();
+			}
 			
 		}catch(Exception ex) {
 			msg = ex.getMessage();
 		}finally {
+			disConn();
 			return msg;
 		}
 	}
@@ -190,15 +200,17 @@ public class MemberDao {
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			disConn();
 			return vo;
 		}
 	}
 
-	
+	public void disConn() {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

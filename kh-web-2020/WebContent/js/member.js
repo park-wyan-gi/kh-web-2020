@@ -23,7 +23,9 @@ var member = function(){
 			var frm = document.frm_member;
 			var pwd = prompt("회원정보를 삭제하시려면 암호를 입력하세요");
 			if(pwd != null){
-				frm.action = url + 'result.jsp';
+				frm.action = 'member.do?job=delete';
+				frm.pwd.value = pwd;
+				frm.mid.disabled=false;
 				frm.submit();
 			}
 		}

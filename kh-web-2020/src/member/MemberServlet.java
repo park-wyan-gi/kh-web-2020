@@ -32,6 +32,7 @@ public class MemberServlet extends HttpServlet{
 		
 		int nowPage = 1;
 		String findStr = "";
+		String msg = "";
 		
 		RequestDispatcher rd = null;
 		dao = new MemberDao();
@@ -63,7 +64,7 @@ public class MemberServlet extends HttpServlet{
 			FileUpload fu = new FileUpload(req);
 			vo = fu.getMember();
 			page = fu.getPage();
-			String msg = dao.insert(vo);
+			msg = dao.insert(vo);
 			
 			req.setAttribute("msg", msg);
 			req.setAttribute("page", page);
@@ -81,8 +82,27 @@ public class MemberServlet extends HttpServlet{
 			rd.forward(req, resp);
 			
 			break;
+			
+			
+		case "delete":
+			vo = new MemberVo();
+			vo.setMid(req.getParameter("mid"));
+			vo.setPwd(req.getParameter("pwd"));
+			vo.setDelFile(req.getParameter("delFile"));
+			
+			msg = dao.delete(vo);
+			
+			page = new Page();
+			page.setFindStr(req.getParameter("findStr"));
+			page.setNowPage(Integer.parseInt(req.getParameter("nowPage")));
+			req.setAttribute("page", page);
+			
+			req.setAttribute("msg", msg);
+			
+			rd = req.getRequestDispatcher(url + "result.jsp");
+			rd.forward(req, resp);
+			break;
 		}
-	
 	
 	}
 

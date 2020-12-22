@@ -32,7 +32,16 @@
 		<input type='text' name='address' disabled size='60'  value='${vo.address }'/> <br/>
 		
 		<label></label>
-		<img src='./upload/${vo.photo }' width='200px' height='140px' />
+		
+			<c:choose>
+				<c:when test="${empty vo.photo }">
+					<img src='http://placehold.it/200X140' width='200px' height='140px' />
+				</c:when>
+				<c:otherwise>
+					<img src='./upload/${vo.photo }' width='200px' height='140px' />
+				</c:otherwise>				
+			</c:choose>		
+			
 		<hr/>
 		
 		<div class='btns'>
@@ -43,6 +52,8 @@
 		
 		<input type='text' name='findStr' value='${param.findStr }'/>
 		<input type='text' name='nowPage' value='${param.nowPage }'/>
+		<input type='text' name='delFile' value='${vo.photo }' />
+		<input type='text' name='pwd' />
 	</form>
 
 </div>
