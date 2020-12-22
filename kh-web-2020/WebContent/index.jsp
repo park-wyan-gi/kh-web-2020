@@ -70,6 +70,7 @@
   //header의 높이와 바탕색
   $('#index>#header').css('height', '150px');
   $('#index>#header').css('background-color', '#ccc');
+  $('#index>#header').css('background-image', 'url(./images/back1.png)');
   $('#index>#header').css('margin-top', '5px');
   $('#index>#header').css('position', 'relative');
   

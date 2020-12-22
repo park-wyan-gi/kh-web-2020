@@ -29,13 +29,13 @@
 		<span class='mdate'>가입일</span>
 	</div>
 	<div class='items'>
-		<c:forEach var='vo' begin='1' end='10'>
-			<div class='item' onclick="view('${vo}')">
-				<span class='no'>${vo }</span>
-				<span class='mid'>hong</span>
-				<span class='name'>홍길동</span>
-				<span class='email'>hong@jobt.kr</span>
-				<span class='mdate'>2020-01-01</span>
+		<c:forEach var='vo' items="${list }">
+			<div class='item' onclick="view('${vo.mid}')">
+				<span class='no'></span>
+				<span class='mid'>${vo.mid }</span>
+				<span class='name'>${vo.name }</span>
+				<span class='email'>${vo.email }</span>
+				<span class='mdate'>${vo.mdate }</span>
 			</div>
 		</c:forEach>
 	</div>
