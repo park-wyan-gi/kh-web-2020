@@ -16,13 +16,13 @@
 	<h2>회원관리</h2>
 	<form name='frm_member' method='post' class='insert'>
 		<label>아이디</label>
-		<input type='text' name='mid' size='10' required /><br/>
+		<input type='text' name='mid' size='10' maxlength='10' required pattern='[\w!\-$]{4,10}'/><br/>
 		
 		<label>성명</label>
-		<input type='text' name='name' size='12'  required /><br/>
+		<input type='text' name='name' size='12'  required pattern='[a-zA-Z가-힣]{4,20}'/><br/>
 		
 		<label>암호</label>
-		<input type='password' name='pwd' size='14'  required /><br/>
+		<input type='password' name='pwd' size='14'  required pattern='[\w!\-$]{4,10}'/><br/>
 		
 		<label>암호확인</label>
 		<input type='password' name='pwdConfirm' size='14' /><br/>
@@ -31,7 +31,7 @@
 		<input type='email' name='email' size='35' /><br/>
 		
 		<label>연락처</label>
-		<input type='text' name='phone' size='15' /><br/>
+		<input type='text' name='phone' size='15' pattern='[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}'/><br/>
 		
 		<label>우편번호</label>
 		<input type='text' name='zipcode' size='6'  required />
@@ -50,8 +50,8 @@
 			<input type='button' value='저장' id='btnSave' />
 			<input type='button' value='목록으로' id='btnSelect' />
 			
-			<input type='text' name='findStr' value='${param.findStr }' />
-			<input type='text' name='nowPage' value='${param.nowPage }' />
+			<input type='hidden' name='findStr' value='${param.findStr }' />
+			<input type='hidden' name='nowPage' value='${param.nowPage }' />
 			
 		</div>
 	</form>
