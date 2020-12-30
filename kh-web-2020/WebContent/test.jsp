@@ -9,7 +9,7 @@
 <body>
 <form name='frm' method='post'>
 	id : <input type='text' name='mid' pattern='[\w!$_\-]{4,10}'><br/>
-
+ 
 
 	<p/>
 	<input type='button' onclick = 'go()' value='GO'>
@@ -24,6 +24,8 @@
 	document.frm.oninvalid = function(e){
 		alert(e)
 	}
+	
+	
 	
 	</script>
 </form>

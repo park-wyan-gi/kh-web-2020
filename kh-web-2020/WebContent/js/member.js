@@ -176,7 +176,7 @@ var member = function(){
 			frm.submit();
 		}
 	}
-}
+}//end of member()
 
 function goPage(page){
 	var frm = document.frm_member;
@@ -184,6 +184,7 @@ function goPage(page){
 	frm.nowPage.value = page;
 	frm.submit();
 }
+
 function view(mid){
 	var frm = document.frm_member;
 	frm.action = 'member.do?job=view';

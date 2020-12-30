@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 <link rel='stylesheet' type='text/css' href='./css/board.css'>
+
 <script src='./js/board.js'></script>
 </head>
 <body>
@@ -14,8 +15,10 @@
 	<h2 class='title_main'>게시판</h2>
 	<form name='frm_board' method='post'>
 		<input type='button' id='btnInsert' value='입력'>
-		<div>
-			<input type='text' name='findStr' id='findStr'>
+		<input type='hidden' name='nowPage' value='${(empty param.nowPage)? 1 : param.nowPage }' />
+		<input type='hidden' name='serial'  value='0'/>
+		<div class='find'>
+			<input type='text' name='findStr' id='findStr' value='${param.findStr }'>
 			<input type='button' name='btnFind' id='btnFind' value='조회'/>
 		</div>
 	</form>
@@ -29,12 +32,12 @@
 	</div>
 	<div class='items'>
 		<c:forEach var='vo' begin='1' end='12'>
-			<div class='item'>
-				<span class='no'>NO${vo}</span>
+			<div class='item' onclick="view(${vo})">
+				<span class='no'>${vo}99,999</span>
 				<span class='subject'>제목(10)</span>
-				<span class='mid'>작성자</span>
-				<span class='mdate'>작성일</span>
-				<span class='hit'>조회수</span>
+				<span class='mid'>IT여행자</span>
+				<span class='mdate'>2020-12-30</span>
+				<span class='hit'>999,999</span>
 			</div>					
 		</c:forEach>
 	</div>	
@@ -43,8 +46,8 @@
 		<input type='button' value='맨점'>
 		<input type='button' value='이전'>
 		
-		<c:forEach var='i' begin='1' end='5'>
-				<input type='button' value='${i }'>
+		<c:forEach var='i' begin='110' end='115'>
+				<input type='button' value='${i }' onclick='goPage(${i})'>
 		</c:forEach>
 
 		<input type='button' value='다음'>
