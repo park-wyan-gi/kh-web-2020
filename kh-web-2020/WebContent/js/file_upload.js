@@ -50,7 +50,6 @@ function append(zone){
 		if(file.getAttribute("modify") == "yes"){
 			zone.removeChild(p);
 		}
-		
 	}
 	
 	div.appendChild(file);
@@ -58,7 +57,6 @@ function append(zone){
 	
 	zone.appendChild(div);
 }
-
 function imagePreView(zone, ev){
 	var tag = ev.srcElement;
 	var pDiv = tag.parentNode;
