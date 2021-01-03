@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id='board'>
-	<h2 class='title_main'>게시판</h2>
+	<h2 class='title_main'>게시판1</h2>
 	<form name='frm_board' method='post'>
 		<input type='button' id='btnInsert' value='입력'>
 		<input type='hidden' name='nowPage' value='${(empty param.nowPage)? 1 : param.nowPage }' />
@@ -31,14 +31,16 @@
 		<span class='hit'>조회수</span>
 	</div>
 	<div class='items'>
-		<c:forEach var='vo' begin='1' end='12'>
-			<div class='item' onclick="view(${vo})">
-				<span class='no'>${vo}99,999</span>
-				<span class='subject'>제목(10)</span>
-				<span class='mid'>IT여행자</span>
-				<span class='mdate'>2020-12-30</span>
-				<span class='hit'>999,999</span>
+		<c:set var='rno' value='${page.startNo }' />
+		<c:forEach var='vo' items='${list }'>
+			<div class='item' onclick="view(${vo.serial})">
+				<span class='no'>${rno}</span>
+				<span class='subject'>${vo.subject }</span>
+				<span class='mid'>${vo.mid }</span>
+				<span class='mdate'>${vo.mdate }</span>
+				<span class='hit'>${vo.hit }</span>
 			</div>					
+			<c:set var='rno' value='${rno+1 }' />
 		</c:forEach>
 	</div>	
 	
@@ -46,7 +48,7 @@
 		<input type='button' value='맨점'>
 		<input type='button' value='이전'>
 		
-		<c:forEach var='i' begin='110' end='115'>
+		<c:forEach var='i' begin='${page.startPage }' end='${page.endPage }'>
 				<input type='button' value='${i }' onclick='goPage(${i})'>
 		</c:forEach>
 

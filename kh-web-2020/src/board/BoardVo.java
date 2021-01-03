@@ -1,5 +1,7 @@
 package board;
 
+import java.util.List;
+
 public class BoardVo {
 	
 	int serial;
@@ -11,6 +13,16 @@ public class BoardVo {
 	int hit;
 	int pserial;
 	
+	int attCnt;
+	List<BoardAttVo> attList;
+	List<BoardAttVo> delFiles;
+	
+	public int getAttCnt() {
+		return attCnt;
+	}
+	public void setAttCnt(int attCnt) {
+		this.attCnt = attCnt;
+	}
 	public int getSerial() {
 		return serial;
 	}
@@ -58,6 +70,18 @@ public class BoardVo {
 	}
 	public void setPserial(int pserial) {
 		this.pserial = pserial;
+	}
+	public List<BoardAttVo> getAttList() {
+		return attList;
+	}
+	public void setAttList(List<BoardAttVo> attList) {
+		this.attList = attList;
+	}
+	public List<BoardAttVo> getDelFiles() {
+		return delFiles;
+	}
+	public void setDelFiles(List<BoardAttVo> delFiles) {
+		this.delFiles = delFiles;
 	}
 	
 	

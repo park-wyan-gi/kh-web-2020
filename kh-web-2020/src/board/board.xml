@@ -5,6 +5,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
+
 	<select id="all_serial" resultType="int">
 	   select serial from board	
 	</select>
@@ -21,13 +22,40 @@
 		select * from board where serial = #{_parameter}
 	</select>
 	
-	<select id="select" resultType="board.BoardVo" parameterType="String">
-		select * from board where subject like '%${_parameter}%' or doc like '%${_parameter}%' 
+	<select id="tot_list_size" resultType='int' parameterType="bean.Page">
+		select count(serial) from board
+		where subject like '%${findStr}%' or doc like '%${findStr}%'
+	</select>
+	
+	<select id="select_att" resultType="board.BoardAttVo" parameterType="int">
+		select * from boardAtt where pserial = #{_parameter}
+	</select>
+	
+	<select id="select" resultType="board.BoardVo" parameterType="bean.Page">
+		<![CDATA[
+		select * from (
+			select rownum rno, m.* from
+			   ( select b.serial , b.mid, b.mdate, b.hit,
+			    	   lpad(' ', (level-1)*6+1, '&nbsp;&nbsp;') ||b.subject,
+			    	(select count(serial) cnt from boardAtt where pserial=b.serial) attCnt 
+				from board b where subject like '%${findStr}%' or doc like '%${findStr}%' 
+				connect by prior serial = pserial
+				start with pserial is null
+				order siblings by serial desc ) m
+		) where rno between #{startNo} and #{endNo}
+		]]>	 
 	</select>
 
 	<insert id="insert" parameterType="board.BoardVo">
-		insert into board(serial, mid, subject) values(seq_board.nextval, #{mid} , #{subject} )
+		insert into board(serial, mid, pwd, subject, doc, mdate, hit) 
+		values(seq_board.nextval, #{mid} , #{pwd},  #{subject} , #{doc}, sysdate, 0 )
 	</insert>
+
+	<insert id="insert_repl" parameterType="board.BoardVo">
+		insert into board(serial, mid, pwd, subject, doc, mdate, hit, pSerial) 
+		values(seq_board.nextval, #{mid} , #{pwd},  #{subject} , #{doc}, sysdate, 0, #{serial} )
+	</insert>
+
 
 	<update id="update" parameterType="board.BoardVo">
 		update board set subject=#{subject}, doc=#{doc} where serial = #{serial} and pwd=#{pwd}
@@ -36,6 +64,15 @@
 	<delete id="delete" parameterType="board.BoardVo">
 		delete from board where serial=#{serial} and pwd=#{pwd}
 	</delete>
+	
+	<insert id='insert_att' parameterType="board.BoardAttVo">
+		insert into boardAtt(serial, pserial, sysfile, orifile)
+		values(seq_boardAtt.nextval, #{pSerial}, #{sysFile}, #{oriFile} )
+	</insert>
+	<delete id="delete_att" parameterType="board.BoardAttVo">
+		delete from boardAtt where sysfile = #{sysFile}
+	</delete>
+	
 
 
 </mapper>   

@@ -1,6 +1,8 @@
-package member;
+package board;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,6 +24,7 @@ public class FileUpload {
 	MultipartRequest mul;
 	String sysFile = "";
 	String oriFile = "";
+	List<BoardAttVo> attList = new ArrayList<BoardAttVo>();
 	
 	public FileUpload(HttpServletRequest req) {
 		try {
@@ -32,6 +35,12 @@ public class FileUpload {
 				String tag = (String)en.nextElement();
 				sysFile = mul.getFilesystemName(tag); // 수정된 파일명
 				oriFile = mul.getOriginalFileName(tag); //원본 파일명
+				if(oriFile.contentEquals("")) continue;
+				
+				BoardAttVo attVo = new BoardAttVo();
+				attVo.setSysFile(sysFile);
+				attVo.setOriFile(oriFile);
+				attList.add(attVo);
 			}
 			
 			
@@ -41,19 +50,33 @@ public class FileUpload {
 		}
 	}
 	
-	public MemberVo getMember() {
-		MemberVo vo = new MemberVo();
-		vo.setAddress(mul.getParameter("address")); 
-		vo.setEmail(mul.getParameter("email"));
+	//mode : i(insert), u(update), r(repl)
+	public BoardVo getBoardVo(char mode) {
+		BoardVo vo = new BoardVo();
 		vo.setMdate(mul.getParameter("mdate"));
 		vo.setMid(mul.getParameter("mid"));
-		vo.setName(mul.getParameter("name"));
-		vo.setPhone(mul.getParameter("phone"));
 		vo.setPwd(mul.getParameter("pwd"));
-		vo.setZipcode(mul.getParameter("zipcode"));
-		vo.setPhoto(sysFile);
-		vo.setDelFile(mul.getParameter("delFile"));
+		vo.setSubject(mul.getParameter("subject"));
+		vo.setDoc(mul.getParameter("doc"));
+		vo.setHit(Integer.parseInt(mul.getParameter("hit")));
+		vo.setPserial(Integer.parseInt(mul.getParameter("serial")));
 		
+		if(attList.size()>0) {
+			vo.setAttList(attList);
+		}
+		
+		if(mode == 'u' || mode == 'd') {
+			vo.setSerial(Integer.parseInt(mul.getParameter("serial")));
+			if(mul.getParameterValues("delFiles") != null) {
+				List<BoardAttVo> delFiles = new ArrayList<BoardAttVo>();
+				for(String s : mul.getParameterValues("delFiles")){
+					BoardAttVo v = new BoardAttVo();
+					v.setSysFile(s);
+					delFiles.add(v);
+				}
+				vo.setDelFiles(delFiles);
+			}
+		}
 		return vo;
 	}
 	

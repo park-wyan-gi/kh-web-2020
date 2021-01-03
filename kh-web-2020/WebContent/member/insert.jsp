@@ -16,10 +16,10 @@
 	<h2>회원관리</h2>
 	<form name='frm_member' method='post' class='insert'>
 		<label>아이디</label>
-		<input type='text' name='mid' size='10' maxlength='10' required pattern='[\w!\-$]{4,10}'/><br/>
+		<input type='text' name='mid' size='10' maxlength='10' required pattern='[\w!\-$]{3,10}'/><br/>
 		
 		<label>성명</label>
-		<input type='text' name='name' size='12'  required pattern='[a-zA-Z가-힣]{4,20}'/><br/>
+		<input type='text' name='name' size='12'  required pattern='[a-zA-Z가-힣]{2,20}'/><br/>
 		
 		<label>암호</label>
 		<input type='password' name='pwd' size='14'  required pattern='[\w!\-$]{4,10}'/><br/>
