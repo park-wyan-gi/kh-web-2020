@@ -17,8 +17,10 @@ public class FileUpload {
 	//public static final String saveDir = "C:\\Users\\user1\\Documents\\hipwg\\git\\kh-web-2020\\WebContent\\upload\\";
 	
 	//home
-	public static final String saveDir = "C:/Users/jobtc/git/kh-web-2020/kh-web-2020/WebContent/upload/";
+	//public static final String saveDir = "C:/Users/jobtc/git/kh-web-2020/kh-web-2020/WebContent/upload/";
 	
+	// notebook
+	public static final String saveDir = "C:/Users/pwg/git/kh-web-2020/kh-web-2020/WebContent/upload/";
 	int maxSize = 1024*1024*100;//100Mb;
 	String encoding = "utf-8";
 	MultipartRequest mul;
@@ -35,7 +37,7 @@ public class FileUpload {
 				String tag = (String)en.nextElement();
 				sysFile = mul.getFilesystemName(tag); // 수정된 파일명
 				oriFile = mul.getOriginalFileName(tag); //원본 파일명
-				if(oriFile.contentEquals("")) continue;
+				if(oriFile == null) continue;
 				
 				BoardAttVo attVo = new BoardAttVo();
 				attVo.setSysFile(sysFile);
@@ -58,8 +60,15 @@ public class FileUpload {
 		vo.setPwd(mul.getParameter("pwd"));
 		vo.setSubject(mul.getParameter("subject"));
 		vo.setDoc(mul.getParameter("doc"));
-		vo.setHit(Integer.parseInt(mul.getParameter("hit")));
-		vo.setPserial(Integer.parseInt(mul.getParameter("serial")));
+		
+		if(mul.getParameter("serial") !=null) {
+			vo.setpSerial(Integer.parseInt(mul.getParameter("serial")));
+		}
+		
+		if(mul.getParameter("hit") != null) {
+			vo.setHit(Integer.parseInt(mul.getParameter("hit")));
+		}
+		
 		
 		if(attList.size()>0) {
 			vo.setAttList(attList);
@@ -70,6 +79,7 @@ public class FileUpload {
 			if(mul.getParameterValues("delFiles") != null) {
 				List<BoardAttVo> delFiles = new ArrayList<BoardAttVo>();
 				for(String s : mul.getParameterValues("delFiles")){
+					
 					BoardAttVo v = new BoardAttVo();
 					v.setSysFile(s);
 					delFiles.add(v);

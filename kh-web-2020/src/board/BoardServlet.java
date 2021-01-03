@@ -52,9 +52,6 @@ public class BoardServlet extends HttpServlet{
 		page.setNowPage(nowPage);
 		page.setFindStr(findStr);
 		
-		System.out.println(page.getNowPage());
-		
-		
 		switch(job) {
 		case "select":
 			Map<String, Object> map = dao.select(page);
@@ -93,13 +90,13 @@ public class BoardServlet extends HttpServlet{
 			vo.setSerial(Integer.parseInt(req.getParameter("serial")));
 			req.setAttribute("msg", msg);
 			req.setAttribute("page", page);
-			rd = req.getRequestDispatcher(url+"result.jsp");
+			rd = req.getRequestDispatcher(url+"repl.jsp");
 			rd.forward(req, resp);
 			
 			break;
 		case "replR":
 			fu = new FileUpload(req);
-			vo = fu.getBoardVo('i');
+			vo = fu.getBoardVo('r');
 			page = fu.getPage();
 			msg = dao.insertRepl(vo);
 			

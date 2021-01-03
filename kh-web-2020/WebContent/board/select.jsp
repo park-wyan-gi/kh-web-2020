@@ -45,15 +45,15 @@
 	</div>	
 	
 	<div class='btns'>
-		<input type='button' value='맨점'>
-		<input type='button' value='이전'>
+		<input type='button' value='맨점' onclick='goPage(1)'>
+		<input type='button' value='이전' onclick='goPage(${page.startPage-1})'>
 		
 		<c:forEach var='i' begin='${page.startPage }' end='${page.endPage }'>
 				<input type='button' value='${i }' onclick='goPage(${i})'>
 		</c:forEach>
 
-		<input type='button' value='다음'>
-		<input type='button' value='맨끝'>
+		<input type='button' value='다음' onclick = 'goPage(${page.endPage+1})'>
+		<input type='button' value='맨끝' onclick = 'goPage(${page.totPage})'>
 	</div>
 </div>
 

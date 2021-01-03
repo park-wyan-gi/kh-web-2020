@@ -53,6 +53,12 @@
 	text-align: center;
 }
 
+
+#board .item:hover{
+	background-color:#eee;
+	cursor: pointer;
+}
+
 /* insert ----------------- */
 #board form input[name=subject]{
 	width: 500px;
@@ -64,6 +70,24 @@
 	height:150px;
 }
 
+/* update ------------*/
+#board form .inner{
+	display: inline-block;
+}
+
+#board .attach_old{
+	position: relative;
+	width:120px;
+	height:100px;
+}
+#board .attach_old input[type=checkbox]{
+	position: absolute;
+	right:3px;
+	bottom:3px;
+	width:30px;
+	height:30px;
+	opacity:0.3;
+}
 /* result -------------*/
 
 #board #msg{

@@ -22,6 +22,7 @@ var board = function() {
 	
 	if(btnReplSave != null){
 		btnReplSave.onclick = function(){
+			frm.enctype = 'multipart/form-data';
 			frm.action =job + 'replR';
 			frm.submit();
 		}
@@ -39,6 +40,7 @@ var board = function() {
 			var pwd = prompt("수정하려면 암호를 입력하세요");
 			if(pwd !=null){
 				frm.pwd.value = pwd;
+				frm.enctype = 'multipart/form-data';
 				frm.action = job + "updateR";
 				frm.submit();
 			}
@@ -56,8 +58,9 @@ var board = function() {
 	
 	if(btnDelete != null){
 		btnDelete.onclick = function(){
-			var yn = confirm("정말 삭제하시겠습니까 ???");
-			if(yn){
+			var pwd = prompt("정말 삭제하시려면 암호를 ???");
+			if(pwd != null){
+				frm.pwd.value = pwd;
 				frm.action = job + 'deleteR';
 				frm.submit();
 			}
@@ -74,6 +77,7 @@ var board = function() {
 
 	if (btnSave != null) {
 		btnSave.onclick = function() {
+			frm.enctype = 'multipart/form-data';
 			frm.action = job + 'insertR';
 			frm.submit();
 		}
@@ -96,15 +100,17 @@ var board = function() {
 }
 
 function goPage(page) {
+	var job = "board.do?job=";
 	var frm = document.frm_board;
 	frm.nowPage.value = page;
-	frm.action = 'index.jsp?inc=./board/select.jsp';
+	frm.action = job + "select";
 	frm.submit();
 }
 function view(serial){
+	var job = "board.do?job=";
 	var frm = document.frm_board;
 	frm.serial.value = serial;
-	frm.action = 'index.jsp?inc=./board/view.jsp';
+	frm.action = job + "view";
 	frm.submit();
 }
 

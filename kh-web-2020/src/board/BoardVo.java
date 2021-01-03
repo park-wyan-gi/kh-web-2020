@@ -11,7 +11,7 @@ public class BoardVo {
 	String doc;
 	String mdate;
 	int hit;
-	int pserial;
+	int pSerial;
 	
 	int attCnt;
 	List<BoardAttVo> attList;
@@ -65,11 +65,12 @@ public class BoardVo {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public int getPserial() {
-		return pserial;
+
+	public int getpSerial() {
+		return pSerial;
 	}
-	public void setPserial(int pserial) {
-		this.pserial = pserial;
+	public void setpSerial(int pSerial) {
+		this.pSerial = pSerial;
 	}
 	public List<BoardAttVo> getAttList() {
 		return attList;

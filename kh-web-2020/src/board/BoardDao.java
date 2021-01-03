@@ -1,18 +1,13 @@
 package board;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.oreilly.servlet.multipart.ExceededSizeException;
-
 import bean.Page;
-import member.FileUpload;
 
 public class BoardDao {
 
@@ -95,12 +90,7 @@ public class BoardDao {
 		String msg = "게시물이 저장되었습니다.";
 		try {
 			int cnt = sqlSession.insert("board.insert", vo);
-			if(cnt>0) {
-				if(vo.getAttList() != null) {
-					cnt = sqlSession.insert("board.insert_att", vo.getAttList());
-					if(cnt<1) throw new Exception("첨부 파일 저장중 오류 발생");
-				}
-			}else {
+			if(cnt<1) {
 				throw new Exception("게시물 저장중 오류 발생");
 			}
 			sqlSession.commit();
@@ -120,12 +110,7 @@ public class BoardDao {
 		String msg = "댓글이 저장되었습니다.";
 		try {
 			int cnt = sqlSession.insert("board.insert_repl", vo);
-			if(cnt>0) {
-				if(vo.getAttList() != null) {
-					cnt = sqlSession.insert("board.insert_att", vo.getAttList());
-					if(cnt<1) throw new Exception("댓글 저장중 오류 발생");
-				}
-			}else {
+			if(cnt<1) {
 				throw new Exception("댓글 저장중 오류 발생");
 			}
 			
@@ -147,11 +132,11 @@ public class BoardDao {
 			int cnt = sqlSession.update("board.update", vo);
 			if(cnt>0) {
 				if(vo.getAttList() != null) {
-					cnt = sqlSession.insert("board.insert_att", vo.getAttList());
-					if(cnt<1) throw new Exception("첨부 파일 저장중 오류 발생");
+					cnt = sqlSession.insert("board.insert_att", vo);
+					if(cnt<1) throw new Exception("첨부 저장중 오류 발생");
 				}
 				if(vo.getDelFiles() != null) {
-					cnt = sqlSession.delete("board.delete_att", vo.getDelFiles());
+					cnt = sqlSession.delete("board.delete_att", vo);
 					if(cnt<1) throw new Exception("첨부 파일 삭제중 오류 발생"); 
 					delFile(vo.getDelFiles());
 				}
@@ -173,14 +158,14 @@ public class BoardDao {
 	// delete -> att delete -> file delete
 	public String delete(BoardVo vo) {
 		String msg = "게시물이 삭제되었습니다.";
+		List<BoardAttVo> attList = null;
 		try {
+			attList = sqlSession.selectList("board.select_att", vo.getSerial());
 			int cnt = sqlSession.delete("board.delete", vo);
 			if(cnt>0) {
-				if(vo.getDelFiles() != null) {
-					cnt = sqlSession.delete("board.delete_att", vo.getDelFiles());
-					if(cnt<1) throw new Exception("게시물 첨부 삭제중 오류 발생");
-					delFile(vo.getAttList());
-				}
+				cnt = sqlSession.delete("board.delete_att_pserial", vo.getSerial());
+				if(cnt<1) throw new Exception("게시물 첨부 삭제중 오류 발생");
+				delFile(attList);
 			}else {
 				throw new Exception("게시물 삭제중 오류 발생");
 			}
@@ -230,7 +215,9 @@ public class BoardDao {
 	}
 
 	public void delFile(List<BoardAttVo> delList) {
+		System.out.println("delFile");
 		for(BoardAttVo v : delList) {
+			System.out.println(v.getSysFile());
 			File f = new File(FileUpload.saveDir + v.getSysFile());
 			if(f.exists()) f.delete();
 		}
