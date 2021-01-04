@@ -22,15 +22,15 @@
 		select * from board where serial = #{_parameter}
 	</select>
 	
-	<select id="tot_list_size" resultType='int' parameterType="bean.Page">
-		select count(serial) from board
-		where subject like '%${findStr}%' or doc like '%${findStr}%'
-	</select>
 	
 	<select id="select_att" resultType="board.BoardAttVo" parameterType="int">
 		select * from boardAtt where pserial = #{_parameter}
 	</select>
 	
+	<select id="tot_list_size" resultType='int' parameterType="bean.Page">
+		select count(serial) from board
+		where subject like '%${findStr}%' or doc like '%${findStr}%'
+	</select>
 	<select id="select" resultType="board.BoardVo" parameterType="bean.Page">
 		<![CDATA[
 		select * from (
@@ -53,7 +53,7 @@
 		<if test="attList != null">
 			<foreach collection="attList" item="att">
 				into boardAtt(serial, pserial, sysfile, orifile)
-				values(seq_boardAtt.nextval, seq_board.currval, #{att.sysFile}, #{att.oriFile} )
+				values(getBoardAttSeq(), seq_board.currval, #{att.sysFile}, #{att.oriFile} )
 			</foreach>
 		</if>
 		select * from dual
@@ -66,7 +66,7 @@
 		<if test="attList != null">
 			<foreach collection="attList" item="att">
 				into boardAtt(serial, pserial, sysfile, orifile)
-				values(seq_boardAtt.nextval, seq_board.currval, #{att.sysFile}, #{att.oriFile} )
+				values(getBoardAttSeq(), seq_board.currval, #{att.sysFile}, #{att.oriFile} )
 			</foreach>
 		</if>
 		select * from dual
@@ -81,7 +81,7 @@
 		insert all
 		<foreach collection="attList" item="att">
 			into boardAtt(serial, pserial, sysfile, orifile)
-			values(seq_boardAtt.nextval, #{serial}, #{att.sysFile}, #{att.oriFile} )
+			values(getBoardAttSeq(), #{serial}, #{att.sysFile}, #{att.oriFile} )
 		</foreach>	
 		select * from dual
 	</insert>

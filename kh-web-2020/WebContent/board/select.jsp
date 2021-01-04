@@ -31,16 +31,14 @@
 		<span class='hit'>조회수</span>
 	</div>
 	<div class='items'>
-		<c:set var='rno' value='${page.startNo }' />
 		<c:forEach var='vo' items='${list }'>
 			<div class='item' onclick="view(${vo.serial})">
-				<span class='no'>${rno}</span>
+				<span class='no'>${vo.serial}</span>
 				<span class='subject'>${vo.subject }</span>
 				<span class='mid'>${vo.mid }</span>
 				<span class='mdate'>${vo.mdate }</span>
 				<span class='hit'>${vo.hit }</span>
 			</div>					
-			<c:set var='rno' value='${rno+1 }' />
 		</c:forEach>
 	</div>	
 	

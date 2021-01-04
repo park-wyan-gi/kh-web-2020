@@ -40,7 +40,7 @@
 	padding:2px;
 	box-sizing: border-box;
 }
-#board .no { width:70px;text-align:right;}
+#board .no { width:55px;text-align:right;margin-right:15px;font-size:10pt;}
 #board .subject { width:250px;}
 #board .mid{ width:90px;}
 #board .mdate{width:100px;}

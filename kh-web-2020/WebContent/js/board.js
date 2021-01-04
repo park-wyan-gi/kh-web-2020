@@ -20,7 +20,7 @@ var board = function() {
 	var btnRepl   = getID('btnRepl');
 	var btnReplSave = getID('btnReplSave');
 	
-	if(btnReplSave != null){
+	if(btnReplSave != null){ //댓글저장
 		btnReplSave.onclick = function(){
 			frm.enctype = 'multipart/form-data';
 			frm.action =job + 'replR';
@@ -28,14 +28,14 @@ var board = function() {
 		}
 	}
 	
-	if(btnRepl != null){
+	if(btnRepl != null){// 댓글 작성화면
 		btnRepl.onclick = function(){
 			frm.action = job + 'repl';
 			frm.submit();
 		}
 	}
 	
-	if(btnUpdate != null){
+	if(btnUpdate != null){//게시물 수정저장
 		btnUpdate.onclick = function(){
 			var pwd = prompt("수정하려면 암호를 입력하세요");
 			if(pwd !=null){

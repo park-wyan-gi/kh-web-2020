@@ -69,6 +69,28 @@ values( seq_boardAtt.nextval, 100, 'a.png', 'a.png');
 
 commit;
 
+/* insert all 시 시컨스 증가 함수 */
+create or replace function getBoardSeq
+return number
+is
+  seq number;
+begin
+  select seq_board.nextval into seq from dual;
+  return seq;
+end;
+
+
+create or replace function getBoardAttSeq
+return number
+is
+  seq number;
+begin
+  select seq_boardatt.nextval into seq from dual;
+  return seq;
+end;
+
+
+
 
 
 

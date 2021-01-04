@@ -124,16 +124,6 @@ public class BoardServlet extends HttpServlet{
 			vo.setSerial(Integer.parseInt(req.getParameter("serial")));
 			vo.setPwd(req.getParameter("pwd"));
 			
-			if(req.getParameterValues("delFiles") != null) {
-				List<BoardAttVo> delFiles = new ArrayList<BoardAttVo>();
-				for(String s : req.getParameterValues("delFiles")){
-					BoardAttVo v = new BoardAttVo();
-					v.setSysFile(s);
-					delFiles.add(v);
-				}
-				vo.setDelFiles(delFiles);
-			}
-			
 			msg = dao.delete(vo);
 			
 			req.setAttribute("page", page);

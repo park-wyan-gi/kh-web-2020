@@ -14,13 +14,13 @@ import bean.Page;
 
 public class FileUpload {
 	// 학원
-	//public static final String saveDir = "C:\\Users\\user1\\Documents\\hipwg\\git\\kh-web-2020\\WebContent\\upload\\";
+	public static final String saveDir = "C:\\Users\\user1\\Documents\\hipwg\\git\\kh-web-2020\\WebContent\\upload\\";
 	
 	//home
 	//public static final String saveDir = "C:/Users/jobtc/git/kh-web-2020/kh-web-2020/WebContent/upload/";
 	
 	// notebook
-	public static final String saveDir = "C:/Users/pwg/git/kh-web-2020/kh-web-2020/WebContent/upload/";
+	//public static final String saveDir = "C:/Users/pwg/git/kh-web-2020/kh-web-2020/WebContent/upload/";
 	int maxSize = 1024*1024*100;//100Mb;
 	String encoding = "utf-8";
 	MultipartRequest mul;
@@ -52,7 +52,7 @@ public class FileUpload {
 		}
 	}
 	
-	//mode : i(insert), u(update), r(repl)
+	//mode : i(insert), u(update), r(repl), d(delete)
 	public BoardVo getBoardVo(char mode) {
 		BoardVo vo = new BoardVo();
 		vo.setMdate(mul.getParameter("mdate"));
@@ -69,7 +69,7 @@ public class FileUpload {
 			vo.setHit(Integer.parseInt(mul.getParameter("hit")));
 		}
 		
-		
+		//첨부 파일이 존재하는 경우
 		if(attList.size()>0) {
 			vo.setAttList(attList);
 		}

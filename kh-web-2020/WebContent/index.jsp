@@ -13,7 +13,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
-	application.setAttribute("msg", "※ 다들 코로나 피해서 건강하고 행복한 연말 보냅시다.");
+	application.setAttribute("msg", "※ 2021년은 소띠해. 복 많이 많이 받으소~~~");
 
 
  // inc

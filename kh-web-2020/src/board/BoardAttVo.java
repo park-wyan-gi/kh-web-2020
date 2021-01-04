@@ -5,6 +5,7 @@ public class BoardAttVo {
 	int pSerial;
 	String oriFile;
 	String sysFile;
+	
 	public int getSerial() {
 		return serial;
 	}
