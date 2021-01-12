@@ -86,7 +86,10 @@
 		select * from dual
 	</insert>
 
-
+	<select id='repl_check' parameterType='Integer' resultType='Integer'>
+		select count(serial) from board where pserial = #{_parameter}
+	</select>
+	
 	<delete id="delete" parameterType="board.BoardVo">
 		delete from board where serial=#{serial} and pwd=#{pwd}
 	</delete>
